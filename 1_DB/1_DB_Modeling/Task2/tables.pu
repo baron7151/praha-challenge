@@ -1,0 +1,30 @@
+@startuml tables
+entity products as "Products\n商品" {
+  + ProductID [PK]
+  --
+  ProductName [商品名]
+  Price [値段]
+  Category [種別]
+}
+
+entity orderdetails as "OrderDetails\n注文詳細" {
+  + OrderDetailID [PK]
+  --
+  OrderID 
+  ProductID 
+  Quantity [数量]
+  IsWasabi [ワサビ有無]
+  SyariSize [シャリのサイズ]
+}
+
+entity orders as "Orders\n注文" {
+  + OrderID [PK]
+  --
+  OrderDate [注文日]
+  CustomerID [注文者ID]
+}
+
+orders ||..|{ orderdetails
+orderdetails ||..|| products
+
+@enduml
