@@ -1,0 +1,54 @@
+@startuml tables
+entity messages as "Messages\nメッセージ" {
+  + MessageID [PK]
+  --
+  Message [メッセージ]
+  ChannelID [チャンネルID]
+  ThreadID [スレッドID]
+  WorkspaceID [ワークスペースID]
+  UserID [ユーザID]
+  Created_at [作成日時]
+  Updated_at [更新日時]
+}
+
+entity channels as "channels\nチャンネル" {
+  + ChannelID [PK]
+  --
+  ChannelName [チャンネル名]
+  WorkspaceID [ワークスペースID]
+  UserID  [ユーザID]
+}
+
+entity users as "Users\nユーザ" {
+  + UserID  [PK]
+  --
+  UserName [ユーザ名]
+  ChannelID [チャンネルID]
+  WorkspaceID [ワークスペースID]
+}
+
+entity workspaces as "Workspaces\nワークスペース" {
+  + WorkspaceID  [PK]
+  --
+  WorkspaceName [ワークスペース名]
+  UserID  [ユーザID]
+}
+
+
+entity threads as "Threads\nスレッド"{
+  + ThreadID [PK]
+  --
+  ChannelID  [チャンネルID]
+}
+
+
+
+users }o..o{ workspaces
+channels }o..o{ users
+users ||--o{ messages
+channels ||--o{ messages
+channels ||--o{ threads
+threads ||--|{ messages
+workspaces ||--o{ messages
+workspaces ||--o{ channels
+@enduml
