@@ -4,6 +4,7 @@ entity products as "Products\n商品" {
   --
   ProductName [商品名]
   Price [値段]
+  Category [カテゴリー]
 }
 
 entity orderdetails as "OrderDetails\n注文詳細" {
@@ -22,7 +23,16 @@ entity orders as "Orders\n注文" {
   CustomerID [注文者ID]
 }
 
+entity customers as "Customers\nカスタマー"{
+  + CustomerID [PK]
+  --
+  Name [名前]
+  Tel [電話番号]
+
+}
+
 orders ||..|{ orderdetails
 orderdetails ||..|| products
+customers ||..|| orders
 
 @enduml

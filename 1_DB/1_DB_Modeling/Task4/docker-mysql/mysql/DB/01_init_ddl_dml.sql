@@ -2,12 +2,21 @@ CREATE DATABASE IF NOT EXISTS `sushi`;
 
 USE `sushi`;
 
+create table IF not exists `customers`
+(
+ `customer_id`         INT(20) AUTO_INCREMENT,
+ `name`                varchar(255),
+ `tel`                 varchar(255),
+ PRIMARY KEY (`customer_id`)
+) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
+
 create table IF not exists `orders`
 (
  `order_id`         INT(20) AUTO_INCREMENT,
  `order_date`       Datetime,
  `customer_id`      INT(20),
- PRIMARY KEY (`order_id`)
+ PRIMARY KEY (`order_id`),
+ FOREIGN KEY(`customer_id`) REFERENCES customers(`customer_id`)
 ) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
 create table IF not exists `products`
@@ -32,9 +41,13 @@ create table IF not exists `order_details`
   FOREIGN KEY(`product_id`) REFERENCES products(`product_id`)
 ) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
-insert into orders (order_date,customer_id) values ('2022-11-10 20:01:00',112233);
-insert into orders (order_date,customer_id) values ('2022-11-11 16:01:00',112234);
-insert into orders (order_date,customer_id) values ('2022-11-12 10:01:00',112235);
+insert into customers (name,tel) values ('野村太郎','+81 090-0000-0000');
+insert into customers (name,tel) values ('野村次郎','+81 090-0000-0001');
+insert into customers (name,tel) values ('野村三郎','+81 090-0000-0002');
+
+insert into orders (order_date,customer_id) values ('2022-11-10 20:01:00',1);
+insert into orders (order_date,customer_id) values ('2022-11-11 16:01:00',2);
+insert into orders (order_date,customer_id) values ('2022-11-12 10:01:00',3);
 
 insert into products (price,product_name,category) values (180,'えび','お好みすし');
 insert into products (price,product_name,category) values (360,'いくら','お好みすし');
