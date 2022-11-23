@@ -35,20 +35,10 @@ entity workspaces as "Workspaces\nワークスペース" {
 }
 
 
-entity threads as "Threads\nスレッド"{
-  + ThreadID [PK]
-  --
-  ChannelID  [チャンネルID]
-}
-
-
-
 users }o..o{ workspaces
 channels }o..o{ users
 users ||--o{ messages
 channels ||--o{ messages
-channels ||--o{ threads
-threads ||--|{ messages
 workspaces ||--o{ messages
 workspaces ||--o{ channels
 @enduml

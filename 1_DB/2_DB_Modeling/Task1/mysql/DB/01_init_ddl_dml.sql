@@ -25,14 +25,6 @@ create table IF not exists `channels`
  FOREIGN KEY (`workspace_id`) REFERENCES workspaces(`workspace_id`)
 ) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
 
-create table IF not exists `threads`
-(
- `thread_id`         INT(20) AUTO_INCREMENT,
- `channel_id`        INT(20),
- PRIMARY KEY (`thread_id`),
- FOREIGN KEY (`channel_id`) REFERENCES channels(`channel_id`)
-) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
-
 create table IF not exists `messages`
 (
  `message_id`       INT(20) AUTO_INCREMENT,
@@ -45,7 +37,6 @@ create table IF not exists `messages`
  `updated_at`       datetime not null  default current_timestamp on update current_timestamp,
   PRIMARY KEY (`message_id`),
   FOREIGN KEY(`channel_id`) REFERENCES channels(`channel_id`),
-  FOREIGN KEY(`thread_id`) REFERENCES threads(`thread_id`),
   FOREIGN KEY(`workspace_id`) REFERENCES workspaces(`workspace_id`),
   FOREIGN KEY(`user_id`) REFERENCES users(`user_id`)
 ) DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_bin;
@@ -85,14 +76,11 @@ insert into channels (channel_name,workspace_id) values ('channel3',2);
 
 insert into channel_user (user_id,channel_id) values (1,1);
 insert into channel_user (user_id,channel_id) values (1,2);
-insert into channel_user (user_id,channel_id) values (2,1);
+insert into channel_user (user_id,channel_id) values (2,3);
 
 insert into workspace_user (user_id,workspace_id) values (1,1);
 insert into workspace_user (user_id,workspace_id) values (1,2);
-insert into workspace_user (user_id,workspace_id) values (2,1);
-
-insert into threads(channel_id) values (1);
-insert into threads(channel_id) values (3);
+insert into workspace_user (user_id,workspace_id) values (2,2);
 
 
 insert into messages (message,channel_id,workspace_id,user_id) values ("tarou test1",1,1,1);
