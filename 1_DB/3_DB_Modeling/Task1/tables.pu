@@ -1,0 +1,30 @@
+@startuml tables
+entity documents as "Documents\nドキュメント" {
+  + DocumentID [PK]
+  --
+  Text [テキスト]
+  DirectoryID [ディレクトリID]
+  UserID [ユーザID]
+  Created_at [作成日時]
+  Updated_at [更新日時]
+}
+
+entity directories as "Directories\nディレクトリ" {
+  + DirectoryID [PK]
+  --
+  DirectorylName [チャンネル名]
+  Lft [左座標]
+  Rgt  [右座標]
+}
+
+entity users as "Users\nユーザ" {
+  + UserID  [PK]
+  --
+  UserName [ユーザ名]
+}
+
+users }o..|| documents
+directories }o..|| documents
+
+
+@enduml
