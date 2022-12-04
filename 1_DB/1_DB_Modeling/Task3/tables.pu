@@ -1,0 +1,49 @@
+@startuml tables
+entity products as "Products\n商品" {
+  + ProductID [PK]
+  --
+  ProductName [商品名]
+  Price [値段]
+  Category [カテゴリー]
+}
+
+entity orderdetails as "OrderDetails\n注文詳細" {
+  + OrderDetailID [PK]
+  --
+  OrderID 
+  ProductID 
+  Quantity [数量]
+  IsWasabi [ワサビ有無]
+}
+
+entity orders as "Orders\n注文" {
+  + OrderID [PK]
+  --
+  OrderDate [注文日]
+  CustomerID [注文者ID]
+  TaxDiv [消費税区分]
+  IsToGo [お持ち帰り]
+}
+
+entity customers as "Customers\nカスタマー"{
+  + CustomerID [PK]
+  --
+  Name [名前]
+  Tel [電話番号]
+
+}
+
+entity tax as "Tax\n消費税"{
+  + TaxID [PK]
+  --
+  Tax [消費税]
+  TaxDiv [消費税区分]
+  StartDate [適用開始日]
+  EndDate [適用終了日]
+}
+
+orders ||..|{ orderdetails
+orderdetails ||..|| products
+customers ||..|| orders
+
+@enduml
