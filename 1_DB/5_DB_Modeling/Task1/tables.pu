@@ -1,0 +1,34 @@
+@startuml tables
+
+entity users as "Users\nユーザ" {
+  + UserID  [PK]
+  --
+  UserName [ユーザ名]
+}
+
+entity articles as "Articles\n記事" {
+  + Article_id  [PK]
+  --
+  Article_title [タイトル]
+  Article_text [テキスト]
+  Created_at [作成時間]
+  Updated_at [更新日時]
+  Verison [バージョン]
+  User_id [ユーザーID]
+}
+
+entity article_histories as "ArticleHistories\n記事履歴" {
+  + ID [PK]
+  --
+  Article_id [記事ID]
+  Article_title [タイトル]
+  Article_text [テキスト]
+  Created_at [作成時間]
+  Verison [バージョン]
+}
+
+
+
+users }o..|| articles
+articles }o..|| article_histories
+@enduml
