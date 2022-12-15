@@ -1,0 +1,18 @@
+@startuml tables
+
+entity Assignee {
+  + id  [PK]
+  --
+  name
+}
+
+entity Issue {
+  + id  [PK]
+  --
+  text
+  assigned_to_id[FK]
+}
+
+Issue }o.. Assignee
+
+@enduml
