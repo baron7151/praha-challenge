@@ -1,0 +1,31 @@
+@startuml tables
+
+entity Manga {
+  + id  [PK]
+  --
+  book_id [FK]
+  name [varchar]
+}
+
+entity Novel{
+  + id  [PK]
+  --
+  book_id [FK]
+  name [varchar]
+}
+
+entity Comment{
+  + id  [PK]
+  --
+  book_id [FK]
+  text [varchar]
+}
+
+entity Book{
+  +book_id [PK]
+  --
+}
+
+Book ||..o{ Comment
+Book ||..o{ Novel
+Book ||..o{ Manga
