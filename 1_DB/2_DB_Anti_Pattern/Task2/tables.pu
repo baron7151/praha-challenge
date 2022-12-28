@@ -1,0 +1,18 @@
+@startuml tables
+
+entity posts {
+  + post_id  [PK]
+  --
+  text [varchar]
+}
+
+entity tags{
+  + tag_id  [PK]
+  --
+  post_id[FK]
+  tag [varchar]
+}
+
+posts ||..o{ tags
+
+@enduml
