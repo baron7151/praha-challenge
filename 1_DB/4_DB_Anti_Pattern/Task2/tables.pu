@@ -1,0 +1,16 @@
+@startuml tables
+
+entity Message {
+  + message_id  [PK]
+  --
+  comment[varchar]
+}
+
+entity TreePath{
+  + id  [PK]
+  --
+  ancestor [FK]
+  descendant [FK]
+}
+
+Message ||..o{ TreePath
