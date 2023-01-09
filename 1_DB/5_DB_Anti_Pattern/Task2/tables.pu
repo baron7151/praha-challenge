@@ -1,0 +1,57 @@
+@startuml tables
+
+entity NewCustomer {
+  + customer_id  [PK]
+  --
+  Name
+  Corp
+  Tel
+}
+
+entity Sales {
+  + sales_id  [PK]
+  --
+  Name
+}
+
+entity bus_met {
+  + id  [PK]
+  --
+  customer_id [FK]
+  sales_id [FK]
+  called
+  called_id[FK]
+  metOnce
+  meeting_id[FK]
+  closed
+  closed_history_id[FK]
+}
+
+entity called_memo {
+   + id  [PK]
+  --
+  called_id
+  memo
+}
+
+entity meeting {
+   + id  [PK]
+  --
+  meeting_id
+  metAt
+}
+
+entity closed_history {
+   + id  [PK]
+  --
+  closed_history_id
+  closedAt
+  canceled
+  canceledAt
+}
+
+bus_met ||..|| Sales
+bus_met ||..|| NewCustomer
+bus_met ||..o{ called_memo
+bus_met ||..o{ meeting
+bus_met ||..o{ closed_history
