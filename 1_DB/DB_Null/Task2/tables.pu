@@ -10,9 +10,17 @@ entity Issue {
   + id  [PK]
   --
   text
-  assigned_to_id[FK]
 }
 
-Issue }o.. Assignee
+entity Issue_assignee{
+  + id [PK]
+  --
+  assignee_id [FK]
+  issue_id[FK]
+}
+
+Issue }o..|| Issue_assignee
+Assignee ||..|| Issue_assignee
+
 
 @enduml
