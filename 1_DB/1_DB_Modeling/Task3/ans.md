@@ -10,7 +10,7 @@
 ・通常の消費税（10%）で計算する。
 
 ```sql
-select B.order_id, B.order_date,sum((C.quantity * D.price) * (1+round((select avg(tax) from tax as A where A.tax_start_date < B.order_date and A.tax_end_date > B.order_date And A.tax_div = B.tax_div),2))) as total_price
+select B.order_id, B.order_date,sum((C.quantity * D.price) * (1+round((select tax from tax as A where A.tax_start_date < B.order_date and A.tax_end_date > B.order_date And A.tax_div = B.tax_div),))) as total_price
 from orders as B
 inner join order_details as C
 on B.order_id = C.order_id
@@ -23,7 +23,7 @@ group by order_id;
 ・軽減税率（8%）で計算する。
 
 ```sql
-select B.is_to_go,B.order_id, B.order_date,sum((C.quantity * D.price) * (1+round((select avg(tax) from tax as A where A.tax_start_date < B.order_date and A.tax_end_date > B.order_date And A.tax_div = B.tax_div),2))) as total_price
+select B.is_to_go,B.order_id, B.order_date,sum((C.quantity * D.price) * (1+round((select tax from tax as A where A.tax_start_date < B.order_date and A.tax_end_date > B.order_date And A.tax_div = B.tax_div),2))) as total_price
 from orders as B
 inner join order_details as C
 on B.order_id = C.order_id
