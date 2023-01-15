@@ -1,0 +1,15 @@
+@startuml tables
+
+entity student {
+
++ id [PK]
+--
+name [varchar]
+status[FK]
+}
+
+entity student_master {
+  + status[PK]
+}
+
+student }|..|| student_master
