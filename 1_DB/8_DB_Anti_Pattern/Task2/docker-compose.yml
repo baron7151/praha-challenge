@@ -1,7 +1,7 @@
 version: "3"
 services:
   mysql:
-    container_name: db_anti_7
+    container_name: db_anti_8
     build: ./mysql/ #Dockerfile
     volumes:
       - ./mysql/DB:/docker-entrypoint-initdb.d #初期データをマウントする場所

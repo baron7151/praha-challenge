@@ -1,26 +1,12 @@
 参考記事
+https://www.slideshare.net/t_wada/ronsakucasual
 
 課題 2
 
 テーブル設計の改良点について
 
-sample query
-
-status「inHospital」を追加
+- 履歴テーブルを作成して、対象テーブルからレコードが削除された場合、自動的に履歴テーブルにデータを保存するようにする。
 
 ```sql
-insert into student_master(status) values("inHospital");
-insert into student(name,status) values("shiro","aaaa");
-```
-
-status「inHospital」を「coronaSuspended」に変更
-
-```sql
-update student_master set status = "coronaSuspended" where status = "inHospital";
-```
-
-status 「coronaSuspended」を削除
-
-```sql
-delete from student_master where status = "coronaSuspended";
+delete from students where id =2;
 ```

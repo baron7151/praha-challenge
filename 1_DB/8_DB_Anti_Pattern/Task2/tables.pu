@@ -1,0 +1,10 @@
+@startuml tables
+
+entity Product {
+
++ id [PK]
+--
+product_code
+product_name
+product_code_name [product_code + "=" + product_name]
+}

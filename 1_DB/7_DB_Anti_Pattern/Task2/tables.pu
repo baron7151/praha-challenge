@@ -5,11 +5,11 @@ entity students {
 + id [PK]
 --
 name [varchar]
-status[FK]
 }
 
-entity student_status {
-  + status[PK]
+entity student_histories {
+  + id [PK]
+  --
+  name [varchar]
+  status [varchar]
 }
-
-student }|..|| student_master
