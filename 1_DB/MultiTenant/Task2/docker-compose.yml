@@ -1,0 +1,12 @@
+version: "3"
+services:
+  mysql:
+    container_name: db_multi_tenant
+    build: ./postgres/ #Dockerfile
+    volumes:
+      - ./postgres/DB:/docker-entrypoint-initdb.d #初期データをマウントする場所
+    image: original_postgres # イメージの名前
+    ports:
+      - "5432:5432"
+    environment:
+      - TZ=Asia/Tokyo
