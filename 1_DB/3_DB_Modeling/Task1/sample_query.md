@@ -1,6 +1,6 @@
 ## 課題１のユースケースのクエリについて
 
-「設計フォルダ」配下のフォルダを表示する。
+任意のディレクトリの子のディレクトリを取得する。
 
 ```sql
 SELECT children.*
@@ -26,8 +26,11 @@ SELECT "定例資料",(lft*2+rgt)/3,(lft+rgt*2)/3 FROM directories WHERE directo
 
 ```sql
 SELECT * from directories where directory_name="定例資料";
+insert into documents(doc_text,user_id,directory_id) values("定例資料1です",2,10);
 ```
 
+任意のディレクトリの親のディレクトリを取得する。
+
 ```sql
-insert into documents(doc_text,user_id,directory_id) values("定例資料1です",2,10);
+
 ```
