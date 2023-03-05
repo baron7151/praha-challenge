@@ -1,6 +1,6 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
-import { Game } from "./index";
+import { Game } from "./game";
 
 export default {
   title: "Game",

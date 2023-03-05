@@ -1,6 +1,6 @@
 import React from "react";
 import { action } from "@storybook/addon-actions";
-import { Square } from "./index";
+import { Square } from "./game";
 
 export default {
   title: "Square",

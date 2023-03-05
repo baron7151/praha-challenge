@@ -1,0 +1,32 @@
+@startuml tables
+
+entity users as "Users\nユーザ" {
+  + UserID  [PK]
+  --
+  UserName [ユーザ名]
+}
+
+entity remineds as "Remineds\nリマインド" {
+  + ReminedID  [PK]
+  --
+  Text [テキスト]
+  Duration [期間]
+  Created_at [作成時間]
+  Updated_at [更新日時]
+  Last_exec_time [前回実行時間]
+  Channel_id [チャンネルID]
+  IsDone       [タスク完了]
+}
+
+entity remined_users as "ReminedUsers\nリマインドユーザ" {
+  + ID  [PK]
+  --
+  ReminedID [FK]
+  Publisher [FK]
+  Receiver  [FK]
+}
+
+
+users ||..|{ remined_users
+remineds ||..|{remined_users
+@enduml
