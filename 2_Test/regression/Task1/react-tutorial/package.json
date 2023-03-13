@@ -64,6 +64,7 @@
     "@testing-library/dom": "^9.0.0",
     "babel-loader": "8.1.0",
     "babel-plugin-named-exports-order": "^0.0.2",
+    "cypress": "^12.7.0",
     "prop-types": "^15.8.1",
     "puppeteer": "18.1.0",
     "webpack": "^5.75.0"

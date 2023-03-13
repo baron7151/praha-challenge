@@ -3,7 +3,7 @@ import "./index.css";
 
 export function Square(props) {
   return (
-    <button className="square" onClick={props.onClick}>
+    <button className="square" onClick={props.onClick} data-e2e={props.dataE2e}>
       {props.value}
     </button>
   );
@@ -15,6 +15,7 @@ export class Board extends React.Component {
       <Square
         value={this.props.squares[i]}
         onClick={() => this.props.onClick(i)}
+        dataE2e={i}
       />
     );
   }
@@ -42,7 +43,24 @@ export class Board extends React.Component {
   }
 }
 
-export class Game extends React.Component {
+export const Game = (props) => {
+  return (
+    <>
+      <div className="game-board">
+        <Board
+          squares={props.current.squares}
+          onClick={(i) => props.onClick(i)}
+        />
+      </div>
+      <div className="game-info">
+        <div>{props.status}</div>
+        <ol>{props.moves}</ol>
+      </div>
+    </>
+  );
+};
+
+export class Index extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -55,7 +73,6 @@ export class Game extends React.Component {
       xIsNext: true,
     };
   }
-
   handleClick(i) {
     const history = this.state.history.slice(0, this.state.stepNumber + 1);
     const current = history[history.length - 1];
@@ -99,21 +116,20 @@ export class Game extends React.Component {
     let status;
     if (winner) {
       status = "Winner: " + winner;
+    } else if (!current.squares.includes(null)) {
+      status = "Draw!";
     } else {
       status = "次のプレイヤー: " + (this.state.xIsNext ? "X" : "O");
     }
+
     return (
       <div className="game">
-        <div className="game-board">
-          <Board
-            squares={current.squares}
-            onClick={(i) => this.handleClick(i)}
-          />
-        </div>
-        <div className="game-info">
-          <div>{status}</div>
-          <ol>{moves}</ol>
-        </div>
+        <Game
+          current={this.state.history[this.state.stepNumber]}
+          status={status}
+          moves={moves}
+          onClick={(i) => this.handleClick(i)}
+        />
       </div>
     );
   }
