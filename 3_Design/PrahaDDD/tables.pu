@@ -1,0 +1,53 @@
+@startuml tables
+entity User as "User\nユーザ" {
+  + id [PK]
+  --
+  userId[ユーザID]
+  userName [ユーザネーム]
+  email [Eメール]
+  status [ステータス]
+  teamId [FK]
+  pairId [FK]
+}
+
+entity Pair as "Pair\nペア" {
+  + id [PK]
+  --
+  pairId [ペアID]
+  pairName [ペアネーム]
+  teamId [FK]
+}
+
+entity Team as "Team\nチーム" {
+  + id [PK]
+  --
+  teamId [チームID]
+  teamName [チームネーム]
+}
+
+entity Task as "Task\n課題" {
+  + id  [PK]
+  --
+  taskId [タスクID]
+  category [分類]
+  taskTitle [課題名]
+  taskContent [課題内容]
+}
+
+entity TaskProgress as "Task\nProgress"{
+  + id  [PK]
+  --
+  taskId [FK]
+  userId [FK]
+  status [ステータス]
+}
+
+
+
+User }|--|| Pair
+Pair }|--|| Team
+User }|--|| Team
+User |o--|{ TaskProgress
+Task |o--|{ TaskProgress
+
+@enduml
